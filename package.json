@@ -1,0 +1,22 @@
+{
+  "name": "cave",
+  "version": "0.0.1",
+  "description": "a text adventure framework",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/fwilson42/cave.git"
+  },
+  "author": "Fox Wilson",
+  "license": "BSD 3-clause",
+  "bugs": {
+    "url": "https://github.com/fwilson42/cave/issues"
+  },
+  "homepage": "https://github.com/fwilson42/cave",
+  "dependencies": {
+    "connect": "^2.14.5"
+  }
+}
