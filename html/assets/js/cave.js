@@ -6,7 +6,7 @@ var settings = {
 };
 
 var message = function(msg){$(".well").prepend(msg + "<br />");};
-var d = function(m){if(settings.debug)message("<i>debug: " + m + "</i>");};
+var d = function(m){if(settings.debug)message("<small><i>debug: " + m + "</i></small>");};
 
 
 var welcome = function(game) {
@@ -17,9 +17,9 @@ var welcome = function(game) {
 };
 
 $(document).ready(function() {
-    message("cave initializing");
+    d("cave v0.0.1 starting up, loading data at /game.json");
     $.get("/game.json", function(data) {
-        message("cave initialization complete, entering game");
+        d("game data loaded.");
         welcome(data);
     });
 });
