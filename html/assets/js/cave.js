@@ -11,9 +11,7 @@ var d = function(m){if(settings.debug)message("<small><i>debug: " + m + "</i></s
 
 var welcome = function(game) {
     if(game.welcome) message(game.welcome);
-    else {
-        message("Welcome to " + game.title + ", by " + game.author);
-    }
+    else message("Welcome to " + game.title + ", by " + game.author);
 };
 
 $(document).ready(function() {
