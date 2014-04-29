@@ -4,6 +4,9 @@
     "welcome": "<i>Test Game</i>, by Fox Wilson",
 
     "rooms": {
-
+        "default": {
+            "name": "Default Room",
+            "desc": "Nothing of interest in here."
+        }
     }
 }
