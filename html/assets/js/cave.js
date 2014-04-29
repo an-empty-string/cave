@@ -5,9 +5,10 @@ var settings = {
     debug: true
 };
 
-var game = {}
+var game = {};
 var message = function(msg){$(".well").prepend(msg + "<br />");};
-var d = function(m){if(settings.debug)message("<small><i>debug: " + m + "</i></small>");};
+var d = function(m){if(settings.debug)message("<small><small><i>debug: " + m + "</i></small></small>");};
+var actor = null;
 var Character = function() {
     this.health = 100;
     this.room = "__none__";
@@ -20,13 +21,13 @@ var welcome = function() {
     else message("Welcome to " + game.title + ", by " + game.author);
 };
 
-var enterRoom = function(character, room) {
+var enterRoom = function(room) {
     d("entering room " + room);
-    character.room = room;
+    actor.room = room;
     room = game.rooms[room];
     if(room.welcome) message(room.welcome);
     else message("You enter " + room.name + "...");
-    character.roomdata = room;
+    actor.roomdata = room;
     d("entered room");
 }
 
@@ -35,8 +36,8 @@ $(document).ready(function() {
     $.get("/game.json", function(data) {
         game = data;
         d("game data loaded.");
-        var character = Character();
+        actor = new Character();
         welcome();
-        enterRoom(character, "default");
+        enterRoom("default");
     });
 });
