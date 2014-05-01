@@ -14,7 +14,7 @@ var Character = function() {
     this.room = "__none__";
     this.roomdata = {};
     return this;
-}
+};
 
 var welcome = function() {
     if(game.welcome) message(game.welcome);
@@ -31,6 +31,13 @@ var enterRoom = function(room) {
     d("entered room");
 }
 
+var observe = function() {
+    d("observing current room");
+    if(actor.roomdata.desc) message(actor.roomdata.desc);
+    else message("You see nothing special about " + room.name + ".");
+    d("observed current room");
+};
+
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
     $.get("/game.json", function(data) {
@@ -41,3 +48,10 @@ $(document).ready(function() {
         enterRoom("default");
     });
 });
+
+// magic parsing and stuff
+function parse(thing) {
+    thing = thing.split(" ");
+    switch(thing[0]){
+    }
+}
