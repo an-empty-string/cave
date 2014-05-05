@@ -11,6 +11,7 @@ var d = function(m){if(settings.debug)message("<small><small><i>debug: " + m + "
 var actor = null;
 var Character = function() {
     this.health = 100;
+    this.inventory = [];
     this.room = "__none__";
     this.roomdata = {};
     return this;
@@ -50,8 +51,20 @@ $(document).ready(function() {
 });
 
 // magic parsing and stuff
+commands = {
+    observe: observe
+}
 function parse(thing) {
     thing = thing.split(" ");
-    switch(thing[0]){
-    }
+    if (Object.keys(commands).indexOf(thing[0]) > -1)
+        commands[thing[0]](thing.slice(1))
+    else
+        message("Unknown command " + thing[0]);
+}
+function handlekey(e) {
+    if(!e) e = window.event;
+    if(e.keyCode != 13) return;
+    var v = $("#entry").val();
+    $("#entry").val("");
+    parse(v);
 }

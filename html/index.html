@@ -11,8 +11,11 @@
             body {
                 padding: 10px;
             }
-            html,body,.well {
+            html,body {
                 height: 100%;
+            }
+            .well {
+                height: 80%;
             }
         </style>
     </head>
@@ -20,6 +23,7 @@
         <div class="well">
             <!-- messages and stuff -->
         </div>
+        <input class="form-control" id="entry" onkeyup="handlekey()"/>
         <script src="/assets/js/jquery.js"></script>
         <script src="/assets/js/cave.js"></script>
     </body>
