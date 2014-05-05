@@ -61,6 +61,12 @@ var mover = function(dir) {
 
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
+    d("trying to fetch localizations at lang.json");
+    $.get("/lang.json", function(data) {
+        for(var key in data) {
+            strings[key] = data[key];
+        }
+    });
     $.get("/game.json", function(data) {
         game = data;
         d("game data loaded.");
