@@ -11,7 +11,8 @@ var strings = {
     you_enter: "You enter ",
     nothing_special: "You see nothing special about ",
     no_room_here: "There doesn't seem to be a room there.",
-    unknown_command: "I don't know how to do that."
+    unknown_command: "I don't know how to do that.",
+    empty_inventory: "Your inventory is empty."
 };
 
 var game = {};
@@ -59,6 +60,13 @@ var mover = function(dir) {
     return move;
 }
 
+var inv = function() {
+    if(actor.inventory.length)
+        message(actor.inventory.map(function(x){return x.name;}).join(", "));
+    else
+        message(strings.empty_inventory);
+};
+
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
     d("trying to fetch localizations at lang.json");
@@ -87,6 +95,7 @@ commands = {
     south: go_s, s: go_s,
     east: go_e,  e: go_e,
     west: go_w,  w: go_w,
+    inventory: inv, inv: inv, i: inv
 }
 function parse(thing) {
     thing = thing.split(" ");
