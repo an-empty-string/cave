@@ -39,6 +39,16 @@ var observe = function() {
     d("observed current room");
 };
 
+var mover = function(d) {
+    var move = function() {
+        if(actor.roomdata.neighbors && actor.roomdata.neighbors[d])
+            enterRoom(actor.roomdata.neighbors[d]);
+        else
+            message("There doesn't seem to be a room there.");
+    }
+    return move;
+}
+
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
     $.get("/game.json", function(data) {
@@ -52,7 +62,11 @@ $(document).ready(function() {
 
 // magic parsing and stuff
 commands = {
-    observe: observe
+    observe: observe,
+    north: mover("north"),
+    south: mover("south"),
+    east: mover("east"),
+    west: mover("west")
 }
 function parse(thing) {
     thing = thing.split(" ");

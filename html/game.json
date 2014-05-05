@@ -5,9 +5,20 @@
 
     "rooms": {
         "default": {
-            "welcome": "You find yourself in a rather large room, with four walls and no doors.",
+            "welcome": "You find yourself in a rather large room, with four walls and a door to the north.",
             "name": "Default Room",
-            "desc": "Nothing of interest in here."
+            "desc": "Nothing of interest in here, but there's a door to the north.",
+            "neighbors": {
+                "north": "north_hall"
+            }
+        },
+        "north_hall": {
+            "welcome": "You step into a rather large hallway... You can see somebody's office to the north.",
+            "name": "North Hall",
+            "desc": "A hallway. The designers clearly paid attention to detail -- the pattern etched into the walls on both sides is exactly the same, down to the millimeter. It's almost scary.",
+            "neighbors": {
+                "south": "default"
+            }
         }
     }
 }
