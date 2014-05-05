@@ -5,6 +5,15 @@ var settings = {
     debug: true
 };
 
+var strings = {
+    welcome_to: "Welcome to ",
+    author_is: ", by ",
+    you_enter: "You enter ",
+    nothing_special: "You see nothing special about ",
+    no_room_here: "There doesn't seem to be a room there.",
+    unknown_command: "I don't know how to do that."
+};
+
 var game = {};
 var message = function(msg){$(".well").prepend(msg + "<br />");};
 var d = function(m){if(settings.debug)message("<small><small><i>debug: " + m + "</i></small></small>");};
@@ -19,7 +28,7 @@ var Character = function() {
 
 var welcome = function() {
     if(game.welcome) message(game.welcome);
-    else message("Welcome to " + game.title + ", by " + game.author);
+    else message(strings.welcome_to + game.title + strings.author_is + game.author);
 };
 
 var enterRoom = function(room) {
@@ -27,7 +36,7 @@ var enterRoom = function(room) {
     actor.room = room;
     room = game.rooms[room];
     if(room.welcome) message(room.welcome);
-    else message("You enter " + room.name + "...");
+    else message(strings.you_enter + room.name + "...");
     actor.roomdata = room;
     d("entered room");
 }
@@ -35,16 +44,17 @@ var enterRoom = function(room) {
 var observe = function() {
     d("observing current room");
     if(actor.roomdata.desc) message(actor.roomdata.desc);
-    else message("You see nothing special about " + room.name + ".");
+    else message(strings.nothing_special + room.name + ".");
     d("observed current room");
 };
 
-var mover = function(d) {
+var mover = function(dir) {
+    d("generating mover for " + dir);
     var move = function() {
-        if(actor.roomdata.neighbors && actor.roomdata.neighbors[d])
-            enterRoom(actor.roomdata.neighbors[d]);
+        if(actor.roomdata.neighbors && actor.roomdata.neighbors[dir])
+            enterRoom(actor.roomdata.neighbors[dir]);
         else
-            message("There doesn't seem to be a room there.");
+            message(strings.no_room_here);
     }
     return move;
 }
@@ -61,19 +71,23 @@ $(document).ready(function() {
 });
 
 // magic parsing and stuff
+var go_n = mover("north");
+var go_s = mover("south");
+var go_e = mover("east");
+var go_w = mover("west");
 commands = {
     observe: observe,
-    north: mover("north"),
-    south: mover("south"),
-    east: mover("east"),
-    west: mover("west")
+    north: go_n, n: go_n,
+    south: go_s, s: go_s,
+    east: go_e,  e: go_e,
+    west: go_w,  w: go_w,
 }
 function parse(thing) {
     thing = thing.split(" ");
     if (Object.keys(commands).indexOf(thing[0]) > -1)
         commands[thing[0]](thing.slice(1))
     else
-        message("Unknown command " + thing[0]);
+        message(strings.unknown_command);
 }
 function handlekey(e) {
     if(!e) e = window.event;
