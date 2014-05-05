@@ -13,10 +13,12 @@ var strings = {
     no_room_here: "There doesn't seem to be a room there.",
     unknown_command: "I don't know how to do that.",
     empty_inventory: "Your inventory is empty.",
-    things_here: "Items here: "
+    things_here: "Items here: ",
+    win: "YOU'RE WINNER !"
 };
 
 var game = {};
+var gameover = false;
 var message = function(msg){$(".well").prepend(msg + "<br />");};
 var d = function(m){if(settings.debug)message("<small><small><i>debug: " + m + "</i></small></small>");};
 var actor = null;
@@ -37,11 +39,13 @@ var enterRoom = function(room) {
     d("entering room " + room);
     actor.room = room;
     room = game.rooms[room];
+    if(room.hooks && room.hooks.preEntry) eval(room.hooks.preEntry);
     if(room.welcome) message(room.welcome);
     else message(strings.you_enter + room.name + "...");
     actor.roomdata = room;
     if(actor.roomdata.items && actor.roomdata.items.length)
         message(strings.things_here + actor.roomdata.items.map(function(x){return x.name;}).join(", "));
+    if(room.hooks && room.hooks.postEntry) eval(room.hooks.postEntry);
     d("entered room");
 }
 
@@ -71,6 +75,11 @@ var inv = function() {
     else
         message(strings.empty_inventory);
 };
+
+var win = function() {
+    message(strings.win);
+    gameover = true;
+}
 
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
@@ -103,6 +112,7 @@ commands = {
     inventory: inv, inv: inv, i: inv
 }
 function parse(thing) {
+    if(gameover) return;
     thing = thing.split(" ");
     if (Object.keys(commands).indexOf(thing[0]) > -1)
         commands[thing[0]](thing.slice(1))
