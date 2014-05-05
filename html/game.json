@@ -31,7 +31,18 @@
             "items": [
                 {"name": "Doge"},
                 {"name": "Nuclear launch codes"}
-            ]
+            ],
+            "hooks": {
+                "postEntry": "win();"
+            }
         }
-    }
+    },
+
+    "credits": [
+        ["Engine", "Fox Wilson"],
+        ["These credits", "The letter A"],
+        ["Other stuff", "The number 2"],
+        ["The storyline", "The word POTATO"],
+        ["jQuery", "The jQuery development team"]
+    ]
 }

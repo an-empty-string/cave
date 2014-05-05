@@ -43,8 +43,8 @@ var enterRoom = function(room) {
     if(room.welcome) message(room.welcome);
     else message(strings.you_enter + room.name + "...");
     actor.roomdata = room;
-    if(actor.roomdata.items && actor.roomdata.items.length)
-        message(strings.things_here + actor.roomdata.items.map(function(x){return x.name;}).join(", "));
+    if(room.items && room.items.length)
+        message(strings.things_here + room.items.map(function(x){return x.name;}).join(", "));
     if(room.hooks && room.hooks.postEntry) eval(room.hooks.postEntry);
     d("entered room");
 }
@@ -77,13 +77,27 @@ var inv = function() {
 };
 
 var win = function() {
+    d("won the game");
     message(strings.win);
     gameover = true;
-}
+    rollCredits();
+};
+
+var rollCredits = function() { // :)
+    setTimeout(function() {
+        $("body").css("background-color", "black");
+        $("body").css("font-size", "200%");
+        $("body").html("<hr />");
+        var n = 1;
+        for(var i = 0; i < game.credits.length; i++) {
+                $("body").append('<div class="row" style="color: white;"><div class="col-sm-6">' + game.credits[i][0] + '</div><div class="col-sm-6" style="text-align: right;">' + game.credits[i][1] + '</div></div><hr />');
+        }
+    }, 2000);
+};
 
 $(document).ready(function() {
     d("cave v0.0.1 starting up, loading data at /game.json");
-    d("trying to fetch localizations at lang.json");
+    d("trying to fetch localizations at /lang.json");
     $.get("/lang.json", function(data) {
         for(var key in data) {
             strings[key] = data[key];
