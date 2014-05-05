@@ -12,7 +12,8 @@ var strings = {
     nothing_special: "You see nothing special about ",
     no_room_here: "There doesn't seem to be a room there.",
     unknown_command: "I don't know how to do that.",
-    empty_inventory: "Your inventory is empty."
+    empty_inventory: "Your inventory is empty.",
+    things_here: "Items here: "
 };
 
 var game = {};
@@ -39,6 +40,8 @@ var enterRoom = function(room) {
     if(room.welcome) message(room.welcome);
     else message(strings.you_enter + room.name + "...");
     actor.roomdata = room;
+    if(actor.roomdata.items && actor.roomdata.items.length)
+        message(strings.things_here + actor.roomdata.items.map(function(x){return x.name;}).join(", "));
     d("entered room");
 }
 
@@ -46,6 +49,8 @@ var observe = function() {
     d("observing current room");
     if(actor.roomdata.desc) message(actor.roomdata.desc);
     else message(strings.nothing_special + room.name + ".");
+    if(actor.roomdata.items && actor.roomdata.items.length)
+        message(strings.things_here + actor.roomdata.items.map(function(x){return x.name;}).join(", "));
     d("observed current room");
 };
 

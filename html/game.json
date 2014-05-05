@@ -17,8 +17,21 @@
             "name": "North Hall",
             "desc": "A hallway. The designers clearly paid attention to detail -- the pattern etched into the walls on both sides is exactly the same, down to the millimeter. It's almost scary.",
             "neighbors": {
+                "north": "north_office",
                 "south": "default"
             }
+        },
+        "north_office": {
+            "welcome": "You walk inside the office and immediately feel like you shouldn't be here. You continue to look around anyway...",
+            "name": "Somebody's Office",
+            "desc": "The wall here has the same pattern as the hallway... interesting.",
+            "neighbors": {
+                "south": "north_hall"
+            },
+            "items": [
+                {"name": "Doge"},
+                {"name": "Nuclear launch codes"}
+            ]
         }
     }
 }
