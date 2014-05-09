@@ -1,67 +1,56 @@
 {
     "title": "Сталин",
     "author": "Fox Wilson, Anya Owsenek, Roman Kasparian",
+    "welcome": '<pre>\n   mmm                                       mmm                                    \n m"   " m   m  mmmmm   mmm   mmmm          m"   " mmmmm   mmm   mmmmm  m   m  m   m \n m      "m m"  m   m  m"  m  m" "m         m        m    "   m  m   m  m  mm  m   m \n m       mmm   m   m  m"-""  m   m         m        m    m"-"m  m   m  m m m  m"-"m \n  "mmm"  "m    m   m  "mmm"  mmmm"          "mmm"   m    "mm"m m"   m  m"  m  m   m \n         m"                  m                                                      \n        ""                   "                                                      \n',
+
     "rooms": {
         "default": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin02": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin03": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin04": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin05": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin06": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin07": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
+            "neighbors": {}
         },
         "kremlin08": {
             "welcome": "Вы в Кремле.",
             "name": "кремль",
             "desc": "Кремль не интересная.",
-            "neighbors": {
-            }
-        },
-        "lose": {
-            "welcome": "Тебе плохо...",
-            "neighbors": {},
-            "hooks": {"postEntry": "setTimeout(lose, 2000);"}
+            "neighbors": {}
         }
     }
 }
