@@ -146,6 +146,9 @@ commands = {
     //
     teleport: function(a) {
         enterRoom(a[0]);
+    },
+    ach: function(a) {
+        achieve(a[0]);
     }
 }
 function parse(thing) {
