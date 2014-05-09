@@ -63,5 +63,10 @@
             "neighbors": {},
             "hooks": {"postEntry": "setTimeout(lose, 2000);"}
         }
+    },
+    "credits": {
+        "doge": "doge inc"
+        "potato": "the grocery store",
+        "moon": "wow"
     }
 }
